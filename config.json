@@ -1,0 +1,13 @@
+{
+  "development": {
+    "db": {
+      "username": "root",
+      "password": "radiance7",
+      "database": "nft_ng",
+      "host": "127.0.0.1",
+      "dialect": "mysql"
+    },
+    "port": 4000
+  },
+  "staging": {}
+}
