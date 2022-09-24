@@ -6,6 +6,7 @@ const helmet = require("helmet");
 const db = require("./models");
 const cors = require("cors");
 const errorHandler = require("./middlewares/errorHandler.middleware");
+const route = require("./routes");
 const app = express();
 const server = http.createServer(app);
 
@@ -14,6 +15,8 @@ app.use(express.json());
 app.use(helmet());
 app.use(cors());
 //>>>>>
+
+app.use("/api", route);
 
 //error handler
 app.use(errorHandler);
@@ -24,3 +27,5 @@ db.sequelize.sync().then(() =>
     console.log("app running on port ::: " + config.port);
   })
 );
+
+module.exports = app;

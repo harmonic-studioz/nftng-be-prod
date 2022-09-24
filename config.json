@@ -7,7 +7,28 @@
       "host": "127.0.0.1",
       "dialect": "mysql"
     },
+    "spaces": {
+      "accessKey": "DO00JHNMWNNVRTTZMHPB",
+      "secretKey": "XqZ5OQtU8k0MHo0vcr82XgMoVE4boxmGt6shktMKeH0",
+      "endPoint": "fra1.digitaloceanspaces.com",
+      "spacesName": "harmonicstudioz"
+    },
     "port": 4000
+  },
+  "test-dev": {
+    "db": {
+      "username": "root",
+      "password": "radiance7",
+      "database": "nft_ng",
+      "host": "127.0.0.1",
+      "dialect": "mysql"
+    },
+    "spaces": {
+      "accessKey": "DO00JHNMWNNVRTTZMHPB",
+      "secretKey": "XqZ5OQtU8k0MHo0vcr82XgMoVE4boxmGt6shktMKeH0",
+      "endPoint": "fra1.digitaloceanspaces.com",
+      "spacesName": "harmonicstudioz"
+    }
   },
   "staging": {}
 }
