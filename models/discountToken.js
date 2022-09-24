@@ -15,6 +15,10 @@ const discountToken = (sequelize, DataTypes) => {
       type: DataTypes.DECIMAL(10, 2),
       allowNull: false,
     },
+    type: {
+      type: DataTypes.ENUM("PERCENTAGE", "FIXED"),
+      defaultValue: "FIXED",
+    },
   });
   discountToken.associate = (model) => {
     discountToken.belongsTo(model.orders, {
