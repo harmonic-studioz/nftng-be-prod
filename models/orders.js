@@ -9,6 +9,22 @@ const orders = (sequelize, DataTypes) => {
     merchandiseItems: {
       type: DataTypes.JSON,
       allowNull: false,
+      validate: {
+        customValidation: (value) => {
+          const keys = Object.keys(value);
+          const allowedKeys = ["merchandiseId", "quantity", "size"];
+          for (x of allowedKeys) {
+            if (!keys.includes(x)) {
+              throw `missing field in merchandiseItems "${x}"`;
+            }
+          }
+          for (x of keys) {
+            if (!allowedKeys.includes(x)) {
+              throw `invalid key "${x}" found in object`;
+            }
+          }
+        },
+      },
     },
     firstName: {
       allowNull: false,

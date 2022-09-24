@@ -22,7 +22,7 @@ app.use("/api", route);
 app.use(errorHandler);
 //>>
 
-db.sequelize.sync().then(() =>
+db.sequelize.sync({ alter: true }).then(() =>
   server.listen(config.port, () => {
     console.log("app running on port ::: " + config.port);
   })
