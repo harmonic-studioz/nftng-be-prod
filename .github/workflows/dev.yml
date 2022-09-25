@@ -15,7 +15,7 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     env:
-      NODE_ENV: development
+      NODE_ENV: test
       username: ${{ secrets.db_username }}
       password: ${{ secrets.db_password }}
       database: nftng_test
@@ -44,18 +44,6 @@ jobs:
         node-version: [16.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
-    env:
-      NODE_ENV: development
-      username: ${{ secrets.db_username }}
-      password: ${{ secrets.db_password }}
-      database: nftng_test
-      host: ${{ secrets.db_host_test }}
-      dialect: mysql
-      port: ${{ secrets.db_port_test }}
-      accessKey: ${{ secrets.spaces_access_key_test }}
-      secretKey: ${{ secrets.spaces_secret_key_test }}
-      endPoint: ${{ secrets.spaces_end_point_test }}
-      spacesName: ${{ secrets.spaces_name_test }}
     steps:
       - uses: actions/checkout@v3
       - name: Use Node.js ${{ matrix.node-version }}
@@ -64,4 +52,19 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
       - run: yarn
+      - name: remove env file
+        run: rm -rf .env*
+      - name: creating env file
+        run: |
+          touch .env
+          echo username=${{ secrets.db_username }} >> .env
+          password=${{ secrets.db_password }} >> .env
+          database="nftng_test" >> .env
+          host=${{ secrets.db_host_test }} >> .env
+          dialect=mysql
+          port=${{ secrets.db_port_test }} >> .env
+          accessKey=${{ secrets.spaces_access_key_test }} >> .env
+          secretKey=${{ secrets.spaces_secret_key_test }} >> .env
+          endPoint=${{ secrets.spaces_end_point_test }} >> .env
+          spacesName=${{ secrets.spaces_name_test }} >> .env
       - run: sudo pm2 start ecosystem.config.js
