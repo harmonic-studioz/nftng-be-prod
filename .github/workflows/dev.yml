@@ -22,21 +22,22 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
       - run: yarn
-  run-tests:
-    needs: build
-    runs-on: self-hosted
-    env:
-      NODE_ENV: development
-      username: ${{ secrets.db_username }}
-      password: ${{ secrets.db_password }}
-      database: nftng_test
-      host: ${{ secrets.db_host_test }}
-      dialect: mysql
-      port: ${{ secrets.db_port_test }}
-      accessKey: ${{ secrets.spaces_access_key_test }}
-      secretKey: ${{ secrets.spaces_secret_key_test }}
-      endPoint: ${{ secrets.spaces_end_point_test }}
-      spacesName: ${{ secrets.spaces_name_test }}
-    steps:
-      - name: run tests
-      - run: yarn test
+  # run-tests:
+  #   needs: build
+  #   runs-on: self-hosted
+  #   env:
+  #     NODE_ENV: development
+  #     username: ${{ secrets.db_username }}
+  #     password: ${{ secrets.db_password }}
+  #     database: nftng_test
+  #     host: ${{ secrets.db_host_test }}
+  #     dialect: mysql
+  #     port: ${{ secrets.db_port_test }}
+  #     accessKey: ${{ secrets.spaces_access_key_test }}
+  #     secretKey: ${{ secrets.spaces_secret_key_test }}
+  #     endPoint: ${{ secrets.spaces_end_point_test }}
+  #     spacesName: ${{ secrets.spaces_name_test }}
+
+  #   steps:
+  #     - name: run tests
+  #     - run: yarn test
