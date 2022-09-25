@@ -1,6 +1,12 @@
 const app = require("./app");
 const request = require("supertest");
 const fs = require("fs");
+const { expect, afterAll, beforeAll } = require("@jest/globals");
+const db = require("./models");
+
+beforeAll(async () => {
+  await db.sequelize.sync();
+}, 30000);
 
 describe("POST /api/merchandise", () => {
   let imageId = [];
@@ -50,10 +56,14 @@ describe("POST /api/merchandise", () => {
           quantity: 100,
           sizes: ["XL", "M"],
           price: 1000,
-          merchandiseImages: ["randomId"],
+          merchandiseImages: imageId,
         });
       expect(response.statusCode).toBe(200);
       // return response;
     });
   });
+});
+
+afterAll(async () => {
+  await db.sequelize.close();
 });
