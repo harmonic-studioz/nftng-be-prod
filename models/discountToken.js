@@ -2,14 +2,14 @@ const discountToken = (sequelize, DataTypes) => {
   const discountToken = sequelize.define("discountToken", {
     id: {
       type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV1,
+      defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
       unique: "id",
     },
     token: {
-      type: DataTypes.UUID,
+      type: DataTypes.STRING,
       allowNull: false,
-      defaultValue: DataTypes.UUIDV4,
+      unique: "token",
     },
     amount: {
       type: DataTypes.DECIMAL(10, 2),

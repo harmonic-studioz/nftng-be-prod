@@ -1,7 +1,13 @@
 const app = require("./app");
 const request = require("supertest");
 const fs = require("fs");
-const { expect, afterAll, beforeAll } = require("@jest/globals");
+const {
+  expect,
+  afterAll,
+  beforeAll,
+  describe,
+  test,
+} = require("@jest/globals");
 const db = require("./models");
 
 beforeAll(async () => {
@@ -10,6 +16,7 @@ beforeAll(async () => {
 
 describe("POST /api/merchandise", () => {
   let imageId = [];
+  let createdMerchandiseId;
   describe("Post /api/uploads", () => {
     expect.extend({
       allObjectInUploadArrayHasIdAndUrl: (received) => {
@@ -59,7 +66,38 @@ describe("POST /api/merchandise", () => {
           merchandiseImages: imageId,
         });
       expect(response.statusCode).toBe(200);
-      // return response;
+      createdMerchandiseId = response.body.id;
+    });
+  });
+
+  describe("edit merchandise items", () => {
+    test("should return 200 with the fields value changed", async () => {
+      const newObject = {
+        name: "changed",
+        quantity: 10,
+        price: "100.00",
+        sizes: ["XL"],
+      };
+      const response = await request(app)
+        .patch(`/api/merchandise/${createdMerchandiseId}`)
+        .send(newObject);
+      expect(response.statusCode).toBe(200);
+      expect(response.body).toMatchObject({
+        ...newObject,
+        id: expect.any(String),
+      });
+    });
+  });
+
+  describe("delete merchandise", () => {
+    test("should return an id and status of 200 'ok'", async () => {
+      const response = await request(app).delete(
+        `/api/merchandise/${createdMerchandiseId}`
+      );
+      expect(response.statusCode).toBe(200);
+      expect(response.body).toMatchObject({
+        id: expect.any(String),
+      });
     });
   });
 });
