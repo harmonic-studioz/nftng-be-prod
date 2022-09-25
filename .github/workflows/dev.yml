@@ -58,13 +58,13 @@ jobs:
         run: |
           touch .env
           echo username=${{ secrets.db_username }} >> .env
-          password=${{ secrets.db_password }} >> .env
-          database="nftng_test" >> .env
-          host=${{ secrets.db_host_test }} >> .env
-          dialect=mysql
-          port=${{ secrets.db_port_test }} >> .env
-          accessKey=${{ secrets.spaces_access_key_test }} >> .env
-          secretKey=${{ secrets.spaces_secret_key_test }} >> .env
-          endPoint=${{ secrets.spaces_end_point_test }} >> .env
-          spacesName=${{ secrets.spaces_name_test }} >> .env
+          echo password=${{ secrets.db_password }} >> .env
+          echo database="nftng_test" >> .env
+          echo host=${{ secrets.db_host_test }} >> .env
+          echo dialect=mysql >> .env
+          echo port=${{ secrets.db_port_test }} >> .env
+          echo accessKey=${{ secrets.spaces_access_key_test }} >> .env
+          echo secretKey=${{ secrets.spaces_secret_key_test }} >> .env
+          echo endPoint=${{ secrets.spaces_end_point_test }} >> .env
+          echo spacesName=${{ secrets.spaces_name_test }} >> .env
       - run: sudo pm2 start ecosystem.config.js
