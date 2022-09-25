@@ -23,6 +23,7 @@ jobs:
           cache: "npm"
       - run: yarn
   run-tests:
+    needs: build
     runs-on: self-hosted
     env:
       NODE_ENV: development
