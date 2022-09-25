@@ -41,5 +41,6 @@ jobs:
       endPoint: ${{secrets.spaces_end_point_test}}
       spacesName: ${{secrets.spaces_name_test}}
     steps:
+      - uses: actions/checkout@v3
       - name: run tests
       - run: yarn test
