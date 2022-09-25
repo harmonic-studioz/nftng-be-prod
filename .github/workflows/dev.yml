@@ -43,6 +43,18 @@ jobs:
         node-version: [16.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
+    env:
+      NODE_ENV: development
+      username: ${{ secrets.db_username }}
+      password: ${{ secrets.db_password }}
+      database: nftng_test
+      host: ${{ secrets.db_host_test }}
+      dialect: mysql
+      port: ${{ secrets.db_port_test }}
+      accessKey: ${{ secrets.spaces_access_key_test }}
+      secretKey: ${{ secrets.spaces_secret_key_test }}
+      endPoint: ${{ secrets.spaces_end_point_test }}
+      spacesName: ${{ secrets.spaces_name_test }}
     steps:
       - uses: actions/checkout@v3
       - name: Use Node.js ${{ matrix.node-version }}
@@ -50,4 +62,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
-      - run: yarn test
+      - run: sudo pm2 stop ecosystem.config.js
+      - run: yarn
+
+      - run: start pm2 stop ecosystem.config.js
