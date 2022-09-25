@@ -39,6 +39,7 @@ describe("POST /api/merchandise", () => {
       expect(response.body);
       expect(response.body).allObjectInUploadArrayHasIdAndUrl();
       imageId = response.body.map((img) => img.id);
+      return response;
     });
   });
 
@@ -54,6 +55,7 @@ describe("POST /api/merchandise", () => {
           merchandiseImages: imageId,
         });
       expect(response.statusCode).toBe(200);
+      return response;
     });
   });
 });
