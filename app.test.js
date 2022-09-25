@@ -2,7 +2,6 @@ const app = require("./app");
 const request = require("supertest");
 const fs = require("fs");
 
-// jest.useFakeTimers();
 describe("POST /api/merchandise", () => {
   let imageId = [];
   describe("Post /api/uploads", () => {
@@ -39,7 +38,6 @@ describe("POST /api/merchandise", () => {
       expect(response.body);
       expect(response.body).allObjectInUploadArrayHasIdAndUrl();
       imageId = response.body.map((img) => img.id);
-      return response;
     });
   });
 
@@ -52,10 +50,10 @@ describe("POST /api/merchandise", () => {
           quantity: 100,
           sizes: ["XL", "M"],
           price: 1000,
-          merchandiseImages: imageId,
+          merchandiseImages: ["randomId"],
         });
       expect(response.statusCode).toBe(200);
-      return response;
+      // return response;
     });
   });
 });
