@@ -26,21 +26,16 @@ jobs:
     runs-on: self-hosted
     env:
       NODE_ENV: development
-
-      # database
-      username: ${{secrets.db_username}}
-      password: ${{secrets.db_password}}
+      username: ${{ secrets.db_username }}
+      password: ${{ secrets.db_password }}
       database: nftng_test
-      host: ${{secrets.db_host_test}}
+      host: ${{ secrets.db_host_test }}
       dialect: mysql
-      port: ${{secrets.db_port_test}}
-
-      # spaces
-      accessKey: ${{secrets.spaces_access_key_test}}
-      secretKey: ${{secrets.spaces_secret_key_test}}
-      endPoint: ${{secrets.spaces_end_point_test}}
-      spacesName: ${{secrets.spaces_name_test}}
+      port: ${{ secrets.db_port_test }}
+      accessKey: ${{ secrets.spaces_access_key_test }}
+      secretKey: ${{ secrets.spaces_secret_key_test }}
+      endPoint: ${{ secrets.spaces_end_point_test }}
+      spacesName: ${{ secrets.spaces_name_test }}
     steps:
-      - uses: actions/checkout@v3
       - name: run tests
       - run: yarn test
