@@ -1,7 +1,7 @@
+require("dotenv").config();
 const express = require("express");
 const http = require("http");
-const env = process.env.NODE_ENV;
-const config = require("./config.json")[env];
+const config = process.env;
 const helmet = require("helmet");
 const db = require("./models");
 const cors = require("cors");
@@ -22,9 +22,9 @@ app.use("/api", route);
 app.use(errorHandler);
 //>>
 
-db.sequelize.sync({ alter: true }).then(() =>
-  server.listen(config.port, () => {
-    console.log("app running on port ::: " + config.port);
+db.sequelize.sync().then(() =>
+  server.listen(config.PORT, () => {
+    console.log("app running on port ::: " + config.PORT);
   })
 );
 

@@ -2,11 +2,11 @@ const sharp = require("sharp");
 const AWS = require("aws-sdk");
 const rm = require("randomstring");
 const db = require("../models");
-const config = require("../config.json")[process.env.NODE_ENV];
+const config = process.env;
 const s3 = new AWS.S3({
-  accessKeyId: config.spaces.accessKey,
-  secretAccessKey: config.spaces.secretKey,
-  endpoint: config.spaces.endPoint,
+  accessKeyId: config.accessKey,
+  secretAccessKey: config.secretKey,
+  endpoint: config.endPoint,
 });
 class Images {
   compressImages = async (images = []) => {
@@ -27,7 +27,7 @@ class Images {
       imageBlobs.map(async (image) => {
         const upload = await s3
           .upload({
-            Bucket: config.spaces.spacesName,
+            Bucket: config.spacesName,
             Key: `${path}/${rm.generate(16)}.jpeg`,
             ACL: "public-read",
             Body: image,
