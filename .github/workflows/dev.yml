@@ -33,7 +33,6 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
-      - run: sudo pm2 stop ecosystem.config.js
       - run: yarn
       - run: yarn test
   start-app:
@@ -51,6 +50,8 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
+
+      - run: sudo pm2 stop ecosystem.config.js
       - run: yarn
       - name: remove env file
         run: rm -rf .env*
