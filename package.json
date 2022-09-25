@@ -28,6 +28,7 @@
     "dev": "NODE_ENV=development nodemon app.js",
     "staging": "NODE_ENV=production node app.js",
     "start": "NODE_ENV=production node app.js",
+    "test": "jest ",
     "test-dev": "NODE_ENV=test-dev jest --watchAll",
     "test-staging": "NODE_ENV=staging jest --watchAll --detectOpenHandles"
   }
