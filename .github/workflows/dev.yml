@@ -40,4 +40,7 @@ jobs:
       secretKey:  ${{secrets.spaces_secret_key_test}}
       endPoint: ${{secrets.spaces_end_point_test}}
       spacesName: ${{secrets.spaces_name_test}}
+    steps:
+      - name: run tests
+      - run: yarn test
       
