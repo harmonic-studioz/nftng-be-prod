@@ -67,4 +67,5 @@ jobs:
           echo secretKey=${{ secrets.spaces_secret_key_test }} >> .env
           echo endPoint=${{ secrets.spaces_end_point_test }} >> .env
           echo spacesName=${{ secrets.spaces_name_test }} >> .env
+          echo PORT=${{ secrets.PORT }} >> .env
       - run: sudo pm2 start ecosystem.config.js
