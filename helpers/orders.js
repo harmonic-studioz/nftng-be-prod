@@ -1,3 +1,4 @@
+const { Op } = require("sequelize");
 const db = require("../models");
 const Merchandise = require("./merchandise");
 
@@ -31,7 +32,10 @@ class Orders extends Merchandise {
         totalAmount = totalAmount - toBeRemoved;
       }
     }
-
+    /**
+     * TO DO
+     * apply delivery charges to totalAmount before creating order
+     */
     const newOrder = await db.orders.create({ ...data, totalAmount });
 
     data.discount &&
@@ -53,6 +57,50 @@ class Orders extends Merchandise {
         model: db.discountToken,
       },
     });
+  };
+
+  getOrders = async (data = {}) => {
+    const options = {
+      ...(data.from && {
+        createdAt: {
+          [Op.gte]: data.from,
+        },
+      }),
+      ...(data.to && {
+        createdAt: {
+          [Op.lte]: data.to,
+        },
+      }),
+      ...(data.merchandiseName && {}),
+      ...(data.reference && {
+        reference: {
+          [Op.like]: `%${data.reference}%`,
+        },
+      }),
+    };
+
+    const totalOrders = await db.orders.count({
+      where: options,
+    });
+    const offset = (data.page - 1) * data.limit;
+    const totalPages = Math.ceil(totalOrders / data.limit);
+
+    const orders = await db.orders.findAll({
+      where: options,
+      limit: data.limit,
+      offset,
+      order: [["createdAt", "desc"]],
+      include: {
+        model: db.discountToken,
+      },
+    });
+    return {
+      results: orders,
+      page: data.page,
+      totalOrders,
+      limit: data.limit,
+      totalPages,
+    };
   };
 }
 

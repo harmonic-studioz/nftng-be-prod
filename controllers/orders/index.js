@@ -50,7 +50,20 @@ const handlePayment = asyncHandler(async (req, res) => {
 
   res.send();
 });
+
+const getOrders = asyncHandler(async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty())
+    throw {
+      status: 400,
+      error: errors.array(),
+    };
+
+  const orders = await new Orders().getOrders(req.query);
+  res.send(orders);
+});
 module.exports = {
   createOrder,
   handlePayment,
+  getOrders,
 };

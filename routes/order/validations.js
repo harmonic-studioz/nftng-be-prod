@@ -1,4 +1,4 @@
-const { body } = require("express-validator");
+const { body, query } = require("express-validator");
 const db = require("../../models");
 
 const createOrderValidations = [
@@ -70,6 +70,14 @@ const createOrderValidations = [
     }),
 ];
 
+const getOrdersValidations = [
+  query(["from", "to"]).optional({ checkFalsy: true }).isDate(),
+  query("page").default(1).toInt().isInt(),
+  query("limit").default(10).toInt().isInt(),
+  query("reference").optional({ checkFalsy: true }).trim().escape(),
+  query("merchandiseName").optional({ checkFalsy: true }).trim().escape(),
+];
 module.exports = {
   createOrderValidations,
+  getOrdersValidations,
 };
