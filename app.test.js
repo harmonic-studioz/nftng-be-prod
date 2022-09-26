@@ -11,7 +11,7 @@ const {
 const db = require("./models");
 
 beforeAll(async () => {
-  await db.sequelize.sync();
+  await db.sequelize.sync({ alter: true });
 }, 30000);
 
 describe("POST /api/merchandise", () => {

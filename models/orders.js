@@ -65,9 +65,9 @@ const orders = (sequelize, DataTypes) => {
       allowNull: false,
       type: DataTypes.TEXT,
     },
-    isPaid: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: false,
+    reference: {
+      type: DataTypes.STRING,
+      allowNull: true,
     },
     totalAmount: {
       type: DataTypes.DECIMAL(10, 2),

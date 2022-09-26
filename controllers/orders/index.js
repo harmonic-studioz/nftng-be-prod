@@ -30,7 +30,7 @@ const handlePayment = asyncHandler(async (req, res) => {
       const { orderId } = data.metadata;
       await db.orders.update(
         {
-          isPaid: true,
+          reference: data.reference,
         },
         {
           where: {
