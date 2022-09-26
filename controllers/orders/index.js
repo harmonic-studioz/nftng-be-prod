@@ -28,16 +28,22 @@ const handlePayment = asyncHandler(async (req, res) => {
     if (data.status === "success") {
       //get order id from metadata
       const { orderId } = data.metadata;
-      await db.orders.update(
-        {
-          reference: data.reference,
+      const { totalAmount } = await db.orders.findOne({
+        where: {
+          id: orderId,
         },
-        {
-          where: {
-            id: orderId,
+      });
+      Number(totalAmount) === data.amount / 100 &&
+        (await db.orders.update(
+          {
+            reference: data.reference,
           },
-        }
-      );
+          {
+            where: {
+              id: orderId,
+            },
+          }
+        ));
       //send mail
     }
   }
