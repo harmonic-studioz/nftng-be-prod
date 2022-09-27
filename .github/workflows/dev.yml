@@ -27,9 +27,9 @@ jobs:
       endPoint: ${{ secrets.spaces_end_point_test }}
       spacesName: ${{ secrets.spaces_name_test }}
       paystackSecretKey: ${{ secrets.paystack_secret }}
-      nft_contract_address: 0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D
+      nft_contract_address: "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D"
       infura_key: ${{ secrets.infura_secret }}
-      discount_amount: 10
+      discount_amount: "10"
     steps:
       - uses: actions/checkout@v3
       - name: Use Node.js ${{ matrix.node-version }}
