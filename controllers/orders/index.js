@@ -4,6 +4,7 @@ const Orders = require("../../helpers/orders");
 const crypto = require("crypto");
 const db = require("../../models");
 const { paystackSecretKey } = process.env;
+
 const createOrder = asyncHandler(async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty())
@@ -62,8 +63,21 @@ const getOrders = asyncHandler(async (req, res) => {
   const orders = await new Orders().getOrders(req.query);
   res.send(orders);
 });
+
+const checkValidWalletAddressForDiscount = asyncHandler(async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty())
+    throw {
+      code: 400,
+      error: errors.array({ onlyFirstError: true }),
+    };
+
+  const data = await new Orders().checkIfValidAddress(req.body);
+  res.send(data);
+});
 module.exports = {
   createOrder,
   handlePayment,
   getOrders,
+  checkValidWalletAddressForDiscount,
 };

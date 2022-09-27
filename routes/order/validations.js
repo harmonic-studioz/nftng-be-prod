@@ -1,4 +1,5 @@
 const { body, query } = require("express-validator");
+const { Op } = require("sequelize");
 const db = require("../../models");
 
 const createOrderValidations = [
@@ -54,6 +55,7 @@ const createOrderValidations = [
       const discount = await db.discountToken.findOne({
         where: {
           token: value,
+          orderId: null,
         },
       });
       if (!discount) throw "invalid token";
@@ -77,7 +79,22 @@ const getOrdersValidations = [
   query("reference").optional({ checkFalsy: true }).trim().escape(),
   query("merchandiseName").optional({ checkFalsy: true }).trim().escape(),
 ];
+
+const getDiscountValidations = [
+  body("address")
+    .not()
+    .isEmpty()
+    .isString()
+    .custom((value) => {
+      if (!/^0x[a-fA-F0-9]{40}$/.test(value)) {
+        throw "invalid wallet address";
+      }
+      return true;
+    }),
+  body("amount").default(process.env.discount_amount).toInt().isInt(),
+];
 module.exports = {
   createOrderValidations,
   getOrdersValidations,
+  getDiscountValidations,
 };

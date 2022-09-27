@@ -26,6 +26,10 @@ jobs:
       secretKey: ${{ secrets.spaces_secret_key_test }}
       endPoint: ${{ secrets.spaces_end_point_test }}
       spacesName: ${{ secrets.spaces_name_test }}
+      paystackSecretKey: ${{ secrets.paystack_secret }}
+      nft_contract_address: 0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D
+      infura_key: ${{ secrets.infura_secret }}
+      discount_amount: 10
     steps:
       - uses: actions/checkout@v3
       - name: Use Node.js ${{ matrix.node-version }}
@@ -70,4 +74,7 @@ jobs:
           echo spacesName=${{ secrets.spaces_name_test }} >> .env
           echo PORT=${{ secrets.PORT }} >> .env
           echo paystackSecretKey=${{ secrets.paystack_secret }} >> .env
+          echo nft_contract_address=0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D >> .env
+          echo infura_key=${{ secrets.infura_secret }} >> .env
+          echo discount_amount=10 >> .env
       - run: sudo pm2 start ecosystem.config.js

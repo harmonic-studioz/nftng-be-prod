@@ -1,6 +1,15 @@
 const { Op } = require("sequelize");
 const db = require("../models");
 const Merchandise = require("./merchandise");
+const Web3 = require("web3");
+const contractFunction = require("../contractFunction");
+const rs = require("randomstring");
+
+const web3 = new Web3(
+  new Web3.providers.HttpProvider(
+    `https://mainnet.infura.io/v3/${process.env.infura_key}`
+  )
+);
 
 class Orders extends Merchandise {
   constructor() {
@@ -101,6 +110,26 @@ class Orders extends Merchandise {
       limit: data.limit,
       totalPages,
     };
+  };
+  checkIfValidAddress = async ({ amount, address }) => {
+    const contract = new web3.eth.Contract(
+      contractFunction,
+      process.env.nft_contract_address
+    );
+    const hasNft = Number(await contract.methods.balanceOf(address).call());
+    if (hasNft <= 0) {
+      throw {
+        code: 400,
+        message: `not eligible`,
+      };
+    }
+    const newDiscountToken = await db.discountToken.create({
+      token: rs.generate({ length: 10, capitalization: "uppercase" }),
+      type: "PERCENTAGE",
+      amount,
+    });
+
+    return newDiscountToken;
   };
 }
 

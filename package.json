@@ -20,7 +20,8 @@
     "sequelize": "^6.23.0",
     "sequelize-cli": "^6.4.1",
     "sharp": "0.30.7",
-    "supertest": "^6.2.4"
+    "supertest": "^6.2.4",
+    "web3": "^1.8.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"
