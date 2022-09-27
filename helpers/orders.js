@@ -131,6 +131,32 @@ class Orders extends Merchandise {
 
     return newDiscountToken;
   };
+
+  getOrdersAndDecrementMerchandiseQuantity = async (orderId) => {
+    const { merchandiseItems } = await db.orders.findOne({
+      where: {
+        id: orderId,
+      },
+    });
+    const transaction = await db.sequelize.transaction();
+    try {
+      const decrementAll = await Promise.all(
+        merchandiseItems.map(async (item) => {
+          await db.merchandise.decrement("quantity", {
+            by: item.quantity,
+            transaction,
+            where: {
+              id: item.merchandiseId,
+            },
+          });
+        })
+      );
+      await transaction.commit();
+      return decrementAll;
+    } catch (err) {
+      await transaction.rollback();
+    }
+  };
 }
 
 module.exports = Orders;

@@ -44,7 +44,8 @@ const handlePayment = asyncHandler(async (req, res) => {
               id: orderId,
             },
           }
-        ));
+        )) &&
+        (await new Orders().getOrdersAndDecrementMerchandiseQuantity(orderId));
       //send mail
     }
   }
