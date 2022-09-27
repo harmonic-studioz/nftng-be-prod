@@ -73,7 +73,7 @@ const checkValidWalletAddressForDiscount = asyncHandler(async (req, res) => {
       error: errors.array({ onlyFirstError: true }),
     };
 
-  const data = await new Orders().checkIfValidAddress(req.body);
+  const data = await new Orders().checkIfValidAddress(req.body.address);
   res.send(data);
 });
 module.exports = {

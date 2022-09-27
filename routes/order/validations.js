@@ -91,7 +91,7 @@ const getDiscountValidations = [
       }
       return true;
     }),
-  body("amount").default(process.env.discount_amount).toInt().isInt(),
+  // body("amount").default(process.env.discount_amount).toInt().isInt(),
 ];
 module.exports = {
   createOrderValidations,

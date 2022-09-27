@@ -111,7 +111,10 @@ class Orders extends Merchandise {
       totalPages,
     };
   };
-  checkIfValidAddress = async ({ amount, address }) => {
+  checkIfValidAddress = async (
+    address,
+    amount = process.env.discount_amount
+  ) => {
     const contract = new web3.eth.Contract(
       contractFunction,
       process.env.nft_contract_address
