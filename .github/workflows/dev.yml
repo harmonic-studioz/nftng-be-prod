@@ -76,5 +76,6 @@ jobs:
           echo paystackSecretKey=${{ secrets.paystack_secret }} >> .env
           echo nft_contract_address=0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D >> .env
           echo infura_key=${{ secrets.infura_secret }} >> .env
-          echo discount_amount=10 >> .env
+          echo discount_amount=5 >> .env
+          echo gold_discount_amount=10 >> .env
       - run: sudo pm2 start ecosystem.config.js

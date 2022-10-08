@@ -4,13 +4,15 @@ const Merchandise = require("./merchandise");
 const Web3 = require("web3");
 const contractFunction = require("../contractFunction");
 const rs = require("randomstring");
+const axios = require("axios");
 
 const web3 = new Web3(
   new Web3.providers.HttpProvider(
     `https://mainnet.infura.io/v3/${process.env.infura_key}`
   )
 );
-
+// const web3 = new Web3("https://data-seed-prebsc-1-s1.binance.org:8545/");
+const pinataGateWay = "https://gateway.pinata.cloud/ipfs/";
 class Orders extends Merchandise {
   constructor() {
     super();
@@ -111,10 +113,7 @@ class Orders extends Merchandise {
       totalPages,
     };
   };
-  checkIfValidAddress = async (
-    address,
-    amount = process.env.discount_amount
-  ) => {
+  checkIfValidAddress = async (address) => {
     const contract = new web3.eth.Contract(
       contractFunction,
       process.env.nft_contract_address
@@ -126,6 +125,35 @@ class Orders extends Merchandise {
         message: `not eligible`,
       };
     }
+    const indexes = [];
+    let x = 0;
+    while (hasNft > indexes.length) {
+      indexes.push(x);
+      console.log(indexes);
+      x++;
+    }
+
+    const data = (
+      await Promise.all(
+        indexes.map(async (x) => {
+          const nft = await contract.methods
+            .tokenOfOwnerByIndex(address, x)
+            .call();
+          const URIData = await contract.methods.tokenURI(nft).call();
+          const { data } = await axios.get(
+            pinataGateWay + String(URIData).replace("ipfs://", "").trim()
+          );
+          // console.log(data);
+          if (data.properties?.pass.toLowerCase() === "gold pass") {
+            return true;
+          }
+        })
+      )
+    ).filter((item) => item);
+
+    const amount = data.length
+      ? process.env.gold_discount_amount
+      : process.env.discount_amount;
     const newDiscountToken = await db.discountToken.create({
       token: rs.generate({ length: 10, capitalization: "uppercase" }),
       type: "PERCENTAGE",
@@ -162,4 +190,7 @@ class Orders extends Merchandise {
   };
 }
 
+new Orders()
+  .checkIfValidAddress("0xd2b507223552e1b21a48b8ca3fc0c43bb80a3ceb")
+  .catch();
 module.exports = Orders;
