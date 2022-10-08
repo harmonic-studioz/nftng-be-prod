@@ -190,7 +190,7 @@ class Orders extends Merchandise {
   };
 }
 
-new Orders()
-  .checkIfValidAddress("0xd2b507223552e1b21a48b8ca3fc0c43bb80a3ceb")
-  .catch();
+// new Orders()
+//   .checkIfValidAddress("0xd2b507223552e1b21a48b8ca3fc0c43bb80a3ceb")
+//   .catch();
 module.exports = Orders;
