@@ -201,7 +201,8 @@ class Orders extends Merchandise {
 
   getDeliveryPrice = async (data = {}) => {
     const { cityName, countryCode } = data;
-    const { default_city_name, default_country_code } = process.env;
+    const { default_city_name, default_country_code, default_weight } =
+      process.env;
     const toSend = {
       senderDetails: {
         cityName: default_city_name,
@@ -211,7 +212,7 @@ class Orders extends Merchandise {
         cityName,
         countryCode,
       },
-      totalWeight: 1,
+      totalWeight: Number(default_weight),
     };
     try {
       const fetchData = await new Promise(async (resolve, reject) => {

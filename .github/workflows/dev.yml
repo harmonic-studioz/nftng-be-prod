@@ -78,4 +78,7 @@ jobs:
           echo infura_key=${{ secrets.infura_secret }} >> .env
           echo discount_amount=5 >> .env
           echo gold_discount_amount=10 >> .env
+          echo default_city_name=yaba >> .env
+          echo default_country_code=NG >> .env
+          echo default_weight=1 >> .env
       - run: sudo pm2 start ecosystem.config.js
