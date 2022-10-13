@@ -65,9 +65,17 @@ const orders = (sequelize, DataTypes) => {
       allowNull: false,
       type: DataTypes.TEXT,
     },
+    countryCode: {
+      allowNull: false,
+      type: DataTypes.STRING,
+    },
     reference: {
       type: DataTypes.STRING,
       allowNull: true,
+    },
+    deliveryFee: {
+      allowNull: false,
+      type: DataTypes.DECIMAL(10, 2),
     },
     totalAmount: {
       type: DataTypes.DECIMAL(10, 2),

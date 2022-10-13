@@ -76,9 +76,21 @@ const checkValidWalletAddressForDiscount = asyncHandler(async (req, res) => {
   const data = await new Orders().checkIfValidAddress(req.body.address);
   res.send(data);
 });
+
+const deliveryFee = asyncHandler(async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty())
+    throw {
+      code: 400,
+      error: errors.array({ onlyFirstError: true }),
+    };
+  const fee = await new Orders().getDeliveryPrice(req.query);
+  res.send(fee);
+});
 module.exports = {
   createOrder,
   handlePayment,
   getOrders,
   checkValidWalletAddressForDiscount,
+  deliveryFee,
 };

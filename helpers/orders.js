@@ -4,7 +4,8 @@ const Merchandise = require("./merchandise");
 const Web3 = require("web3");
 const contractFunction = require("../contractFunction");
 const rs = require("randomstring");
-const axios = require("axios");
+const https = require("https");
+const qs = require("querystring");
 
 const web3 = new Web3(
   new Web3.providers.HttpProvider(
@@ -47,7 +48,16 @@ class Orders extends Merchandise {
      * TO DO
      * apply delivery charges to totalAmount before creating order
      */
-    const newOrder = await db.orders.create({ ...data, totalAmount });
+    const { cost } = await this.getDeliveryPrice({
+      countryCode: data.countryCode,
+      cityName: data.city,
+    });
+    totalAmount += cost / 100;
+    const newOrder = await db.orders.create({
+      ...data,
+      totalAmount,
+      deliveryFee: cost / 100,
+    });
 
     data.discount &&
       (await db.discountToken.update(
@@ -186,6 +196,43 @@ class Orders extends Merchandise {
       return decrementAll;
     } catch (err) {
       await transaction.rollback();
+    }
+  };
+
+  getDeliveryPrice = async (data = {}) => {
+    const { cityName, countryCode } = data;
+    const { default_city_name, default_country_code } = process.env;
+    const toSend = {
+      senderDetails: {
+        cityName: default_city_name,
+        countryCode: default_country_code,
+      },
+      receiverDetails: {
+        cityName,
+        countryCode,
+      },
+      totalWeight: 1,
+    };
+    try {
+      const fetchData = await new Promise(async (resolve, reject) => {
+        https.get(
+          `https://api-topship.com/api/get-shipment-rate/?shipmentDetail=${JSON.stringify(
+            toSend
+          )}`,
+          (res) => {
+            res.on("error", (err) => reject(err));
+            res.on("data", (data) => resolve(data));
+          }
+        );
+      });
+
+      return JSON.parse(fetchData)[0];
+    } catch (err) {
+      // console.log(err.response);
+      throw {
+        message: "an unknown error occurred",
+        code: 500,
+      };
     }
   };
 }

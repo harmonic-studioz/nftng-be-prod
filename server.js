@@ -2,7 +2,7 @@ const server = require("./app");
 const db = require("./models");
 const config = process.env;
 
-db.sequelize.sync().then(() =>
+db.sequelize.sync({ alter: true }).then(() =>
   server.listen(config.PORT, () => {
     console.log("app running on port ::: " + config.PORT);
   })

@@ -93,8 +93,12 @@ const getDiscountValidations = [
     }),
   // body("amount").default(process.env.discount_amount).toInt().isInt(),
 ];
+const getDeliveryFeeValidations = [
+  query(["cityName", "countryCode"]).not().isEmpty(),
+];
 module.exports = {
   createOrderValidations,
   getOrdersValidations,
   getDiscountValidations,
+  getDeliveryFeeValidations,
 };
