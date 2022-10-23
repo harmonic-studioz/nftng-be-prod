@@ -7,6 +7,7 @@ const {
   getSingleMerchandise,
   deleteMerchandise,
 } = require("../../controllers/merchandise");
+const adminProtect = require("../../middlewares/adminProtect.middleware");
 const {
   createMerchandiseValidations,
   upload,
@@ -19,13 +20,13 @@ const merchandise = require("express").Router();
 
 merchandise
   .route("/merchandise")
-  .post(createMerchandiseValidations(), createMerchandise)
+  .post(adminProtect, createMerchandiseValidations(), createMerchandise)
   .get(getMerchandiseValidations(), getMerchandise);
 merchandise
   .route("/merchandise/:merchandiseId")
-  .patch(updateMerchandiseValidations(), updateMerchandise)
+  .patch(adminProtect, updateMerchandiseValidations(), updateMerchandise)
   .get(merchandiseExist, getSingleMerchandise)
-  .delete(merchandiseExist, deleteMerchandise);
+  .delete(adminProtect, merchandiseExist, deleteMerchandise);
 
 merchandise.route("/uploads").post(upload.array("images"), imageUpload);
 module.exports = merchandise;
