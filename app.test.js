@@ -71,6 +71,7 @@ describe("POST /api/merchandise", () => {
     test("should respond with status code 200 'ok'", async () => {
       const response = await request(app)
         .post("/api/merchandise")
+        .set({ authorization: `Bearer ${token}` })
         .send({
           name: "product name",
           quantity: 100,
@@ -93,6 +94,7 @@ describe("POST /api/merchandise", () => {
       };
       const response = await request(app)
         .patch(`/api/merchandise/${createdMerchandiseId}`)
+        .set({ authorization: `Bearer ${token}` })
         .send(newObject);
       expect(response.statusCode).toBe(200);
       expect(response.body).toMatchObject({
@@ -104,9 +106,9 @@ describe("POST /api/merchandise", () => {
 
   describe("delete merchandise", () => {
     test("should return an id and status of 200 'ok'", async () => {
-      const response = await request(app).delete(
-        `/api/merchandise/${createdMerchandiseId}`
-      );
+      const response = await request(app)
+        .delete(`/api/merchandise/${createdMerchandiseId}`)
+        .set({ authorization: `Bearer ${token}` });
       expect(response.statusCode).toBe(200);
       expect(response.body).toMatchObject({
         id: expect.any(String),
