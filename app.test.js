@@ -15,6 +15,19 @@ beforeAll(async () => {
 }, 30000);
 
 describe("POST /api/merchandise", () => {
+  let token;
+  describe("admin login", () => {
+    test("login should return token", async () => {
+      const response = await request(app).post("/api/admin/login").send({
+        email: "username",
+        password: "password",
+      });
+
+      const { body } = response;
+      expect(response.body.token);
+      token = body.token;
+    });
+  });
   let imageId = [];
   let createdMerchandiseId;
   describe("Post /api/uploads", () => {
