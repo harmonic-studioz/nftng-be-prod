@@ -81,4 +81,7 @@ jobs:
           echo default_city_name=yaba >> .env
           echo default_country_code=NG >> .env
           echo default_weight=1 >> .env
+          echo admin_email=${{ secrets.admin_email }} >> .env
+          echo admin_password="${{ secrets.admin_password }}" >> .env
+          echo jwt_key=${{ secrets.jwt_key }} >> .env
       - run: sudo pm2 start ecosystem.config.js
