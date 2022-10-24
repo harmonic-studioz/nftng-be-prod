@@ -20,12 +20,28 @@ class Merchandise {
     );
     return this.getSingleMerchandise(merchandise.id);
   };
+
   updateMerchandise = async (data = {}) => {
     await db.merchandise.update(data, {
       where: {
         id: data.id || this.id,
       },
     });
+    if (data.images.length) {
+      //update image
+      await db.images.update(
+        {
+          merchandiseId: data.id || this.id,
+        },
+        {
+          where: {
+            id: {
+              [Op.in]: data.images,
+            },
+          },
+        }
+      );
+    }
 
     return this.getSingleMerchandise(data.id || this.id);
   };
