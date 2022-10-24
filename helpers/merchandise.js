@@ -27,7 +27,7 @@ class Merchandise {
         id: data.id || this.id,
       },
     });
-    if (data.images.length) {
+    if (data.images?.length) {
       //update image
       await db.images.update(
         {
