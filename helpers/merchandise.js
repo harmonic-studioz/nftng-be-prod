@@ -29,6 +29,11 @@ class Merchandise {
     });
     if (data.images?.length) {
       //update image
+      await db.images.destroy({
+        where: {
+          merchandiseId: data.id || this.id,
+        },
+      });
       await db.images.update(
         {
           merchandiseId: data.id || this.id,
