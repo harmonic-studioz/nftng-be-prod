@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      script: "yarn staging",
+      script: "yarn start:prod",
       watch: ".",
     },
   ],

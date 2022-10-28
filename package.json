@@ -31,8 +31,8 @@
   },
   "scripts": {
     "dev": "NODE_ENV=development nodemon server.js",
-    "staging": "NODE_ENV=production node server.js",
-    "start": "NODE_ENV=production node server.js",
+    "staging": "NODE_ENV=staging node server.js",
+    "start:prod": "NODE_ENV=production node server.js",
     "test": "jest",
     "test-dev": "NODE_ENV=test-dev jest --watchAll",
     "test-staging": "NODE_ENV=staging jest --watchAll --detectOpenHandles"
