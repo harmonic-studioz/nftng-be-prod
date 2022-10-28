@@ -5,8 +5,8 @@ const Web3 = require("web3");
 const contractFunction = require("../contractFunction");
 const rs = require("randomstring");
 const https = require("https");
-const qs = require("querystring");
-
+// const qs = require("querystring");
+const axios = require("axios");
 const web3 = new Web3(
   new Web3.providers.HttpProvider(
     `https://mainnet.infura.io/v3/${process.env.infura_key}`
@@ -153,8 +153,9 @@ class Orders extends Merchandise {
           const { data } = await axios.get(
             pinataGateWay + String(URIData).replace("ipfs://", "").trim()
           );
-          // console.log(data);
-          if (data.properties?.pass.toLowerCase() === "gold pass") {
+          const [attributes] = data.attributes;
+          console.log(attributes);
+          if (attributes?.value.toLowerCase() === "gold") {
             return true;
           }
         })

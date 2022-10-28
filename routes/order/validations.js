@@ -24,6 +24,16 @@ const createOrderValidations = [
     .custom(async (value) => {
       await Promise.all(
         value.map(async (item) => {
+          const merchandise = await db.merchandise.findOne({
+            where: {
+              id: item.merchandiseId,
+            },
+          });
+          if (!merchandise) throw `an invalid merchandise found in list`;
+
+          if (!merchandise.sizes.includes(String(item.size).toUpperCase()))
+            throw "Size not found for one of the items selected";
+
           const keys = Object.keys(item);
           const allowedKeys = ["merchandiseId", "quantity", "size"];
           for (x of allowedKeys) {
@@ -37,14 +47,6 @@ const createOrderValidations = [
               throw `invalid key "${x}" found in object`;
             }
           }
-          if (
-            !(await db.merchandise.findOne({
-              where: {
-                id: item.merchandiseId,
-              },
-            }))
-          )
-            throw `an invalid merchandise found in list`;
         })
       );
       return true;
