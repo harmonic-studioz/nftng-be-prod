@@ -7,42 +7,6 @@ on:
   push:
     branches: ["master"]
 jobs:
-  build-run-tests:
-    runs-on: self-hosted
-    strategy:
-      matrix:
-        node-version: [16.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
-    env:
-      NODE_ENV: test
-      username: ${{ secrets.db_username }}
-      password: ${{ secrets.db_password }}
-      database: nftng_test
-      host: ${{ secrets.db_host_test }}
-      dialect: mysql
-      port: ${{ secrets.db_port_test }}
-      accessKey: ${{ secrets.spaces_access_key_test }}
-      secretKey: ${{ secrets.spaces_secret_key_test }}
-      endPoint: ${{ secrets.spaces_end_point_test }}
-      spacesName: ${{ secrets.spaces_name_test }}
-      paystackSecretKey: ${{ secrets.paystack_secret }}
-      nft_contract_address: "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D"
-      infura_key: ${{ secrets.infura_secret }}
-      discount_amount: "10"
-
-      admin_email: "username"
-      admin_password: "password"
-      jwt_key: "thisIsTheKey"
-    steps:
-      - uses: actions/checkout@v3
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: "npm"
-      - run: yarn
-      - run: yarn test
   start-app:
     needs: build-run-tests
     runs-on: self-hosted
