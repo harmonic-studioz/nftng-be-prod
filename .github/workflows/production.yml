@@ -1,11 +1,11 @@
 # This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: Node.js CI
+name: deploy production
 
 on:
   push:
-    branches: ["dev"]
+    branches: ["master"]
 jobs:
   build-run-tests:
     runs-on: self-hosted
@@ -69,13 +69,13 @@ jobs:
           echo db_username=${{ secrets.db_username }} >> .env
           echo db_password=${{ secrets.db_password }} >> .env
           echo database="nftng_dev" >> .env
-          echo host=${{ secrets.db_host_test }} >> .env
+          echo host=${{ secrets.db_host }} >> .env
           echo dialect=mysql >> .env
-          echo port=${{ secrets.db_port_test }} >> .env
-          echo accessKey=${{ secrets.spaces_access_key_test }} >> .env
-          echo secretKey=${{ secrets.spaces_secret_key_test }} >> .env
-          echo endPoint=${{ secrets.spaces_end_point_test }} >> .env
-          echo spacesName=${{ secrets.spaces_name_test }} >> .env
+          echo port=${{ secrets.db_port }} >> .env
+          echo accessKey=${{ secrets.spaces_access_key }} >> .env
+          echo secretKey=${{ secrets.spaces_secret_key }} >> .env
+          echo endPoint=${{ secrets.spaces_end_point }} >> .env
+          echo spacesName=${{ secrets.spaces_name }} >> .env
           echo PORT=${{ secrets.PORT }} >> .env
           echo paystackSecretKey=${{ secrets.paystack_secret }} >> .env
           echo nft_contract_address=0x256ECd277670507Fd835C965079d27d3811Ba4F2 >> .env
