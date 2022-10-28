@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      script: "NODE_ENV=production node server.js",
+      script: "npm run start:prod",
       watch: ".",
     },
   ],
