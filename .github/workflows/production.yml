@@ -22,7 +22,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
 
-      - run: sudo pm2 delete all
+      - run: sudo pm2 stop ecosystem.config-prod.js
       - run: yarn
       - name: remove env file
         run: rm -rf .env*
