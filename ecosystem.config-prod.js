@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      script: "yarn start:prod",
+      script: "NODE_ENV=production node server.js",
       watch: ".",
     },
   ],
