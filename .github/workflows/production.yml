@@ -68,7 +68,7 @@ jobs:
           touch .env
           echo db_username=${{ secrets.db_username }} >> .env
           echo db_password=${{ secrets.db_password }} >> .env
-          echo database="nftng_dev" >> .env
+          echo database="nftng_prod" >> .env
           echo host=${{ secrets.db_host }} >> .env
           echo dialect=mysql >> .env
           echo port=${{ secrets.db_port }} >> .env
