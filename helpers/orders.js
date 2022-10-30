@@ -24,17 +24,19 @@ class Orders extends Merchandise {
   //   get discount token
 
   createOrder = async (data = {}) => {
-    console.log(data);
+    // console.log(data);
     let totalAmount = await data.merchandiseItems.reduce(
       async (prevItem, currentItem) => {
         const { price } = await this.getSingleMerchandise(
           currentItem.merchandiseId
         );
-        return Number(price) * currentItem.quantity + prevItem;
+        // console.log(await prevItem, currentItem.quantity, price, "is price");
+        return Number(price) * currentItem.quantity + (await prevItem);
       },
       0
     );
 
+    console.log(totalAmount, "this is total amount");
     if (data.discount) {
       const { amount, type } = data.discount;
       if (type.toLowerCase() === "fixed") {
