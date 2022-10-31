@@ -78,7 +78,7 @@ jobs:
           echo spacesName=${{ secrets.spaces_name_test }} >> .env
           echo PORT=${{ secrets.PORT }} >> .env
           echo paystackSecretKey=${{ secrets.paystack_secret }} >> .env
-          echo nft_contract_address=0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D >> .env
+          echo nft_contract_address=0x256ECd277670507Fd835C965079d27d3811Ba4F2 >> .env
           echo infura_key=${{ secrets.infura_secret }} >> .env
           echo discount_amount=5 >> .env
           echo gold_discount_amount=10 >> .env
