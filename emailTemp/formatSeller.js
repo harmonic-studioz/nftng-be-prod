@@ -1,0 +1,167 @@
+const sellerTemp = ({ orderId }) => {
+  return `
+    
+  <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Insight HTML Email Template</title>
+      
+    </head>
+    <body>
+      <p></p>
+      <center class="wrapper" style="width: 100%;background-color: #1e1e1e;table-layout: fixed;padding-bottom: 60px;">
+        <table class="container" style="border-spacing: 0;width: 100%;max-width: 600px;padding: 20px;background-color: #222222;">
+          <tr>
+            <td style="padding: 0;">
+              <table class="main" width="100%" style="border-spacing: 0;margin: 0 auto;font-family: &quot;Inter&quot;, sans-serif;color: white;">
+                <!-- header -->
+                <tr>
+                  <td style="padding: 0;">
+                    <table width="100%" class="header" style="border-spacing: 0;padding: 40px 30px 0;background-color: #a1d2830a;border-radius: 12px;">
+                      <tr>
+                        <td class="two-column" style="padding: 0;text-align: center;font-size: 0;">
+                          <table class="column logo-wrapper" style="border-spacing: 0;width: 40%;display: inline-block;">
+                            <tr>
+                              <td style="padding: 0 0 50px;">
+                                <a href="https://www.nftng.com" style="text-decoration: none;">
+                                  <img src="./img/logo.png" title="logo" width="80px" class="logo" style="border: 0;width: 80px;">
+                                </a>
+                              </td>
+                            </tr>
+                          </table>
+  
+                          <table class="column header-desc" style="border-spacing: 0;display: inline-block;padding: 0 0 0 50px;width: 60%;">
+                            <tr>
+                              <td style="padding: 0;">
+                                <img src="./img/chat.png" alt="" style="margin: 0 0 20px;border: 0;width: 100px;">
+                                <img src="./img/guy.png" alt="" style="border: 0;width: 100px;">
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+  
+                <!-- Title -->
+                <tr>
+                  <td style="padding: 0;">
+                    <table width="100%" style="border-spacing: 0;">
+                      <tr>
+                        <td style="padding: 20px 20px 40px">
+                          <p class="title" style="font-weight: 700;font-size: 20px;">
+                            ADMIN ORDER MAIL
+                          </p>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+  
+                <!-- Message -->
+                <tr>
+                  <td style="padding: 0;">
+                    <table style="border-spacing: 0;">
+                      <tr>
+                        <td style="
+                            font-size: 14px;
+                            line-height: 24px;
+                            font-weight: 400;
+                            opacity: 0.8;
+                            padding: 0 20px 80px;
+                          ">
+                          <p>Dear Admin,</p>
+                          <p>
+                            Order ${orderId} has been confirmed successfully. Kindly
+                            ensure that the Merch is processed and shipped out.
+                          </p>
+                          <p>
+                            Please endeavor to inform the client when the order is
+                            shipped out and dispatched.
+                          </p>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+                <!-- social -->
+                <tr>
+                  <td style="padding: 0;">
+                    <table width="100%" style="padding: 0 40px 80px;border-spacing: 0;">
+                      <tr>
+                        <td style="
+                            padding: 30px 0 10px;
+                            border-top: 1px solid #ffffff24;
+                            font-size: 10px;
+                            color: #acacac;
+                          ">
+                          <p>
+                            Bringing together digital creators, developers,
+                            thought leaders and other Web3 enthusiasts in the
+                            African Space and empowering them with opportunities
+                            to thrive on a global scale.
+                          </p>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="padding: 0;">
+                          <table align="right" style="border-spacing: 0;">
+                            <tr>
+                              <td style="padding: 0;">
+                                <a href="#" style="text-decoration: none;">
+                                  <img width="16px" src="./img/instagram.png" alt="" style="border: 0;">
+                                </a>
+                                <a href="#" style="margin-left: 5px;text-decoration: none;">
+                                  <img width="16px" src="./img/twitter.png" alt="" style="border: 0;">
+                                </a>
+                                <a href="#" style="margin-left: 5px;text-decoration: none;">
+                                  <img width="16px" src="./img/facebook.png" alt="" style="border: 0;">
+                                </a>
+                                <a href="#" style="margin-left: 5px;text-decoration: none;">
+                                  <img width="16px" src="./img/linkedin.png" alt="" style="border: 0;">
+                                </a>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+                <!-- footer -->
+  
+                <tr>
+                  <td style="padding: 0;">
+                    <table style="padding: 0 60px 40px;border-spacing: 0;" width="100%">
+                      <tr>
+                        <td style="
+                            padding: 0 0 5px;
+                            border-bottom: 1px solid #ffffff24;
+                            font-size: 10px;
+                            color: #acacac;
+                          ">
+                          <p>
+                            If you no longer wish to receive marketing emails,
+                            unsubscribe
+                            <a href="#" style="color: #0e9b62; text-decoration: underline">
+                              here .
+                          </a></p>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </center>
+    </body>
+  </html>
+  
+    `;
+};
