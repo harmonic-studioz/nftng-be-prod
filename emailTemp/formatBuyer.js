@@ -75,7 +75,7 @@ const buyerTemp = ({ orderId, name }) => {
                                   style="text-decoration: none"
                                 >
                                   <img
-                                    src="./img/logo.png"
+                                    src="https://api.nftng.com/template/logo.png"
                                     title="logo"
                                     width="80px"
                                     class="logo"
@@ -98,7 +98,7 @@ const buyerTemp = ({ orderId, name }) => {
                             <tr>
                               <td style="padding: 0">
                                 <img
-                                  src="./img/chat.png"
+                                  src="https://api.nftng.com/template/chat.png"
                                   alt=""
                                   style="
                                     margin: 0 0 20px;
@@ -107,7 +107,7 @@ const buyerTemp = ({ orderId, name }) => {
                                   "
                                 />
                                 <img
-                                  src="./img/guy.png"
+                                  src="https://api.nftng.com/template/guy.png"
                                   alt=""
                                   style="border: 0; width: 100px"
                                 />
@@ -198,7 +198,7 @@ const buyerTemp = ({ orderId, name }) => {
                                 <a href="#" style="text-decoration: none">
                                   <img
                                     width="16px"
-                                    src="./img/instagram.png"
+                                    src="https://api.nftng.com/template/instagram.png"
                                     alt=""
                                     style="border: 0"
                                   />
@@ -209,7 +209,7 @@ const buyerTemp = ({ orderId, name }) => {
                                 >
                                   <img
                                     width="16px"
-                                    src="./img/twitter.png"
+                                    src="https://api.nftng.com/template/twitter.png"
                                     alt=""
                                     style="border: 0"
                                   />
@@ -220,7 +220,7 @@ const buyerTemp = ({ orderId, name }) => {
                                 >
                                   <img
                                     width="16px"
-                                    src="./img/facebook.png"
+                                    src="https://api.nftng.com/template/facebook.png"
                                     alt=""
                                     style="border: 0"
                                   />
@@ -231,7 +231,7 @@ const buyerTemp = ({ orderId, name }) => {
                                 >
                                   <img
                                     width="16px"
-                                    src="./img/linkedin.png"
+                                    src="https://api.nftng.com/template/linkedin.png"
                                     alt=""
                                     style="border: 0"
                                   />

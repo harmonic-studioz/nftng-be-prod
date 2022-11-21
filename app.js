@@ -15,6 +15,7 @@ app.use(cors());
 //>>>>>
 
 app.use("/api", route);
+app.use("/template", express.static("./public/template/static"));
 
 //error handler
 app.use(errorHandler);

@@ -27,7 +27,7 @@ const sellerTemp = ({ orderId }) => {
                             <tr>
                               <td style="padding: 0 0 50px;">
                                 <a href="https://www.nftng.com" style="text-decoration: none;">
-                                  <img src="./img/logo.png" title="logo" width="80px" class="logo" style="border: 0;width: 80px;">
+                                  <img src="https://api.nftng.com/template/logo.png" title="logo" width="80px" class="logo" style="border: 0;width: 80px;">
                                 </a>
                               </td>
                             </tr>
@@ -36,8 +36,8 @@ const sellerTemp = ({ orderId }) => {
                           <table class="column header-desc" style="border-spacing: 0;display: inline-block;padding: 0 0 0 50px;width: 60%;">
                             <tr>
                               <td style="padding: 0;">
-                                <img src="./img/chat.png" alt="" style="margin: 0 0 20px;border: 0;width: 100px;">
-                                <img src="./img/guy.png" alt="" style="border: 0;width: 100px;">
+                                <img src="https://api.nftng.com/template/chat.png" alt="" style="margin: 0 0 20px;border: 0;width: 100px;">
+                                <img src="https://api.nftng.com/template/guy.png" alt="" style="border: 0;width: 100px;">
                               </td>
                             </tr>
                           </table>
@@ -113,16 +113,16 @@ const sellerTemp = ({ orderId }) => {
                             <tr>
                               <td style="padding: 0;">
                                 <a href="#" style="text-decoration: none;">
-                                  <img width="16px" src="./img/instagram.png" alt="" style="border: 0;">
+                                  <img width="16px" src="https://api.nftng.com/template/instagram.png" alt="" style="border: 0;">
                                 </a>
                                 <a href="#" style="margin-left: 5px;text-decoration: none;">
-                                  <img width="16px" src="./img/twitter.png" alt="" style="border: 0;">
+                                  <img width="16px" src="https://api.nftng.com/template/twitter.png" alt="" style="border: 0;">
                                 </a>
                                 <a href="#" style="margin-left: 5px;text-decoration: none;">
-                                  <img width="16px" src="./img/facebook.png" alt="" style="border: 0;">
+                                  <img width="16px" src="https://api.nftng.com/template/facebook.png" alt="" style="border: 0;">
                                 </a>
                                 <a href="#" style="margin-left: 5px;text-decoration: none;">
-                                  <img width="16px" src="./img/linkedin.png" alt="" style="border: 0;">
+                                  <img width="16px" src="https://api.nftng.com/template/linkedin.png" alt="" style="border: 0;">
                                 </a>
                               </td>
                             </tr>
