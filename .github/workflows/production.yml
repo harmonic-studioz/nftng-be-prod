@@ -37,7 +37,7 @@ jobs:
           echo port=${{ secrets.db_port }} >> .env
           echo accessKey=${{ secrets.spaces_access_key }} >> .env
           echo secretKey=${{ secrets.spaces_secret_key }} >> .env
-          echo endPoint=${{ secrets.spaces_end_point }} >> .env
+          echo endPoint=${{ secrets.spaces_endpoint }} >> .env
           echo spacesName=${{ secrets.spaces_name }} >> .env
           echo PORT=${{ secrets.PORT }} >> .env
           echo paystackSecretKey=${{ secrets.paystack_secret }} >> .env
